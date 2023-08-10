@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://zacharybanken.github.io/sitemap.xml

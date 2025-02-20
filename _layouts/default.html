@@ -5,8 +5,10 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
   </head>
+  <script src="{{ "/assets/js/dark-mode.js" | relative_url }}"></script>
   <body>
     {% include navigation.html %}
+    <button id="dark-mode-toggle">🌙</button>
     {{ content }}
   </body>
 </html>

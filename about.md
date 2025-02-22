@@ -4,4 +4,4 @@ title: About
 ---
 # Zachary Banken
 
-this page tells a bit about me.
+This page tells a bit about me.

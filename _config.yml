@@ -1,2 +1,7 @@
 markdown: kramdown
 exclude: [node_modules, vendor]
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/

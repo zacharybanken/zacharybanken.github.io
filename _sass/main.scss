@@ -2,6 +2,7 @@
   --BACKGROUND-COLOR: #4a525a;
   --BACKGROUND-COLOR-2: #2f343a;
   --TEXT-COLOR: #ffffff;
+  --ACCENT-COLOR: #b2d7ff;
 }
 
 .current {
@@ -9,12 +10,12 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    color: #ffffff;
-    background: var(--BACKGROUND-COLOR);
     padding: 20px;
     margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--TEXT-COLOR);
+    background: var(--BACKGROUND-COLOR);
 }
 
 nav {
@@ -36,7 +37,7 @@ nav {
 a {
     display: block;
     width: 100%;
-    color: #b2d7ff;
+    color: var(--ACCENT-COLOR);
     text-decoration: none;
     padding: 10px 0;
     white-space: nowrap;
@@ -56,17 +57,30 @@ a:hover {
 }
 
 .post {
-    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
 }
 
 .post-title {
-    font-size: 1.8rem;
-    color: #ffffff;
+    margin: 0 0 8px 0;
 }
 
+.post-title a {
+    padding: 0;
+    display: inline;
+    white-space: normal;
+}
+
+.post-date,
 .post-meta {
-    color: #c0c0c0;
-    font-size: 0.9rem;
+    display: block;
+    color: #a0a0a0;
+    font-size: 0.9em;
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+.post-excerpt {
+    margin-top: 0;
 }
 
 /* Mobile styles */
@@ -118,6 +132,8 @@ p, h1, h2, h3, h4, h5, h6 {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
+    margin: 2rem auto;
 }
 
 /* Projects styles */
@@ -232,6 +248,35 @@ img {
 .project-content ul {
     padding-left: 1.5rem;
     margin-bottom: 1.5rem;
+}
+
+/* Blog Posts */
+.blog-posts {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.blog-posts h1 {
+    margin-bottom: 40px;
+}
+
+.post {
+    margin-bottom: 40px;
+}
+
+.post-title {
+    margin: 0 0 8px 0;
+}
+
+.post-title a {
+    padding: 0;
+    display: inline;
+    white-space: normal;
+}
+
+.post-excerpt {
+    margin-top: 0;
 }
 
 

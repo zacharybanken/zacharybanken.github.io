@@ -20,10 +20,196 @@
     
 </nav>
     <div class="container">
-    <h1>Hello World!</h1>
-<body>
-    Welcome to my website. This site is a work in progress as I learn more about web development and Jekyll.
-</body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<div class="hero">
+    <img src="assets/images/zb.png" alt="Zachary Banken" class="profile-image">
+    <h1>Zachary Banken</h1>
+    
+    <div class="cv-contact">
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Wenatchee, WA</span>
+      </div>
+      <a href="https://www.linkedin.com/in/zachary-banken-588292229/" class="social-link" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-linkedin-in"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://github.com/zacharybanken" class="social-link" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+        <span>GitHub</span>
+      </a>
+      <button id="contactButton" class="contact-button">
+        <i class="fas fa-envelope"></i>
+        <span>Contact Me</span>
+      </button>
+    </div>
+    
+    <p class="lead">Thanks for checking out my website! It's a work in progress as I learn more about web development and Jekyll.</p>
+</div>
+
+<div id="contactForm" class="contact-form-overlay">
+  <div class="contact-form-container">
+    <div class="contact-form-header">
+      <h3>Get in Touch</h3>
+      <button id="closeContact" class="close-button">&times;</button>
+    </div>
+    
+    <form id="secureContactForm" action="https://formspree.io/f/mldjgwqb" method="POST">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="New message from your website">
+      <input type="hidden" name="_replyto" value="trowels-roomful.5p@icloud.com">
+      <input type="text" name="_gotcha" style="display:none">
+      <button type="submit" class="submit-button">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Contact form functionality
+    const contactButton = document.getElementById('contactButton');
+    const contactForm = document.getElementById('contactForm');
+    const closeButton = document.getElementById('closeContact');
+    const contactFormElement = document.getElementById('secureContactForm');
+    
+    contactButton.addEventListener('click', function() {
+      contactForm.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    });
+    
+    closeButton.addEventListener('click', function() {
+      contactForm.classList.remove('active');
+      document.body.style.overflow = ''; // Re-enable scrolling
+    });
+    
+    // Close the form when clicking outside of it
+    contactForm.addEventListener('click', function(e) {
+      if (e.target === contactForm) {
+        contactForm.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Handle form submission
+    contactFormElement.addEventListener('submit', function(e) {
+      // Show loading state
+      const submitButton = this.querySelector('.submit-button');
+      submitButton.innerHTML = 'Sending...';
+      submitButton.disabled = true;
+      
+      // We'll use fetch to submit the form via AJAX
+      fetch(contactFormElement.action, {
+        method: contactFormElement.method,
+        body: new FormData(contactFormElement),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        // Show success message
+        contactFormElement.innerHTML = `
+          <div class="success-message">
+            <h3>Thank you for your message!</h3>
+            <p>I'll get back to you as soon as possible.</p>
+          </div>
+        `;
+        
+        // Close the form after a delay
+        setTimeout(() => {
+          contactForm.classList.remove('active');
+          document.body.style.overflow = '';
+          
+          // Reset the form after it's closed
+          setTimeout(() => {
+            contactFormElement.reset();
+            contactFormElement.innerHTML = `
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+              </div>
+              <input type="hidden" name="_subject" value="New message from your website">
+              <input type="hidden" name="_replyto" value="trowels-roomful.5p@icloud.com">
+              <input type="text" name="_gotcha" style="display:none">
+              <button type="submit" class="submit-button">Send Message</button>
+            `;
+            // Reset the action attribute to maintain the correct endpoint
+            contactFormElement.action = "https://formspree.io/f/mldjgwqb";
+          }, 500);
+        }, 3000);
+      })
+      .catch(error => {
+        // Handle errors
+        contactFormElement.innerHTML = `
+          <div class="error-message">
+            <h3>Oops! Something went wrong.</h3>
+            <p>Please try again later or reach out via another method.</p>
+            <button id="tryAgainButton" class="submit-button">Try Again</button>
+          </div>
+        `;
+        
+        // Add retry button functionality
+        document.getElementById('tryAgainButton').addEventListener('click', function() {
+          contactForm.classList.remove('active');
+          document.body.style.overflow = '';
+          
+          // Reset the form after it's closed
+          setTimeout(() => {
+            contactFormElement.reset();
+            contactFormElement.innerHTML = `
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+              </div>
+              <input type="hidden" name="_subject" value="New message from your website">
+              <input type="hidden" name="_replyto" value="trowels-roomful.5p@icloud.com">
+              <input type="text" name="_gotcha" style="display:none">
+              <button type="submit" class="submit-button">Send Message</button>
+            `;
+            // Reset the action attribute to maintain the correct endpoint
+            contactFormElement.action = "https://formspree.io/f/mldjgwqb";
+          }, 500);
+        });
+      });
+      
+      // Prevent the default form submission since we're handling it with fetch
+      e.preventDefault();
+    });
+  });
+</script>
     </div>
   </body>
 </html>

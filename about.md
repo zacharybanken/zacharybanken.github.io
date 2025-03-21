@@ -22,7 +22,7 @@ title: About
           <div class="timeline-date">University of Washington - Seattle, June 2023</div>
           <div class="timeline-details">
             <p><strong>Selected Coursework:</strong> Mathematical Physics, Neural Networks for Physics</p>
-            <p><strong>Honors:</strong> magna cum laude (3.98 GPA)</p>
+            <p><strong>Honors:</strong> magna cum laude </p>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@ title: About
           <div class="timeline-date">University of Washington - Seattle, June 2023</div>
           <div class="timeline-details">
             <p><strong>Selected Coursework:</strong> Mathematical Ecology, Scientific Computing</p>
-            <p><strong>Honors:</strong> magna cum laude (3.98 GPA)</p>
+            <p><strong>Honors:</strong> magna cum laude</p>
           </div>
         </div>
       </div>
